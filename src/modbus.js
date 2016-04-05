@@ -5,10 +5,6 @@ exports.client = {
         core        : require('./modbus-tcp-client.js'),
         complete    : require('./modbus-tcp-client.js')
     },
-    serial  : {
-        core        : require('./modbus-serial-client.js'),
-        complete    : require('./modbus-serial-client.js')
-    },
     handler : {
     
     }
@@ -23,7 +19,6 @@ fs.readdirSync(__dirname + '/handler/client')
     }).forEach(function (file) {
 
         exports.client.tcp.complete = exports.client.tcp.complete.compose(require('./handler/client/' + file));
-        exports.client.serial.complete = exports.client.serial.complete.compose(require('./handler/client/' + file));
         exports.client.handler[file.substr(0, file.length - 3)] = require('./handler/client/' + file);
 
     });
